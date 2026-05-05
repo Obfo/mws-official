@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>入学测验 | MWS</title>
+    <style>
+        body { margin: 0; background: #fff; color: #1d1d1f; font-family: -apple-system, sans-serif; }
+        
+        /* 沿用 about.html 的 apple-nav, full-menu 样式以保持一致 */
+        .apple-nav { position: fixed; top: 0; width: 100%; height: 48px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); z-index: 9999; border-bottom: 0.5px solid #d2d2d7; }
+        .nav-content { max-width: 980px; margin: 0 auto; height: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-title { color: #1d1d1f; text-decoration: none; font-size: 17px; font-weight: 500; }
+        .menu-icon { width: 18px; height: 18px; cursor: pointer; position: relative; }
+        .line { position: absolute; width: 100%; height: 1px; background: #1d1d1f; transition: 0.3s; }
+        .line:first-child { top: 6px; }
+        .line:last-child { bottom: 6px; }
+        .menu-active .line:first-child { transform: translateY(5px) rotate(45deg); }
+        .menu-active .line:last-child { transform: translateY(-6px) rotate(-45deg); }
+
+        .full-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #fff; z-index: 9998; display: none; padding-top: 80px; }
+        .menu-links { display: flex; flex-direction: column; padding: 0 40px; }
+        .menu-links a { color: #1d1d1f; text-decoration: none; font-size: 28px; font-weight: 600; padding: 15px 0; border-bottom: 0.5px solid #d2d2d7; }
+
+        /* 测验区 */
+        .quiz-container { max-width: 600px; margin: 100px auto; padding: 0 20px; }
+        h1 { font-size: 32px; font-weight: 600; margin-bottom: 40px; }
+        .quiz-item { display: block; padding: 24px 0; border-bottom: 1px solid #d2d2d7; color: #1d1d1f; text-decoration: none; font-size: 19px; cursor: pointer; }
+        .quiz-item:hover { color: #0071e3; }
+        .quiz-item span { color: #86868b; margin-right: 15px; }
+
+        .result-box { display: none; padding: 40px 0; text-align: center; }
+        .group-id { font-size: 40px; font-weight: 700; color: #0071e3; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <nav class="apple-nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-title">MWS</a>
+            <div class="menu-icon" id="menuToggle">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="full-menu" id="fullMenu">
+        <div class="menu-links">
+            <a href="index.html">首页</a>
+            <a href="about.html">了解我们</a>
+            <a href="quiz.html">入学测验</a>
+        </div>
+    </div>
+
+    <div class="quiz-container">
+        <div id="quiz-ui">
+            <h1>入学评估。</h1>
+            <a class="quiz-item" onclick="showRes('pass')"><span>→</span> 我有创作热情，愿意遵守社区开发规范。</a>
+            <a class="quiz-item" onclick="showRes('pass')"><span>→</span> 我是技术型玩家，想参与底层架构维护。</a>
+            <a class="quiz-item" onclick="showRes('fail')"><span>→</span> 我只是顺路看看，暂时没有开发计划。</a>
+        </div>
+
+        <div id="result-ui" class="result-box">
+            <h2 id="res-title">评估通过</h2>
+            <p id="res-desc">欢迎进入核心社群：</p>
+            <div id="res-id" class="group-id">1081501368</div>
+            <a href="index.html" style="color:#0071e3; text-decoration:none;">&lt; 返回首页</a>
+        </div>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('menuToggle');
+        const menu = document.getElementById('fullMenu');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('menu-active');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            document.body.style.overflow = menu.style.display === 'block' ? 'hidden' : 'auto';
+        });
+
+        function showRes(status) {
+            document.getElementById('quiz-ui').style.display = 'none';
+            document.getElementById('result-ui').style.display = 'block';
+            if(status === 'fail') {
+                document.getElementById('res-title').innerText = "提示";
+                document.getElementById('res-desc').innerText = "你可先加入外围交流群：";
+                document.getElementById('res-id').innerText = "请在首页查看链接";
+            }
+        }
+    </script>
+</body>
+</html>

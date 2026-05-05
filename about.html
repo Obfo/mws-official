@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 | MWS</title>
+    <style>
+        body { margin: 0; background: #fff; color: #1d1d1f; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        /* 导航栏 (浅色适配) */
+        .apple-nav { position: fixed; top: 0; width: 100%; height: 48px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); z-index: 9999; border-bottom: 0.5px solid #d2d2d7; }
+        .nav-content { max-width: 980px; margin: 0 auto; height: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-title { color: #1d1d1f; text-decoration: none; font-size: 17px; font-weight: 500; }
+        .menu-icon { width: 18px; height: 18px; cursor: pointer; position: relative; }
+        .line { position: absolute; width: 100%; height: 1px; background: #1d1d1f; transition: 0.3s; }
+        .line:first-child { top: 6px; }
+        .line:last-child { bottom: 6px; }
+        .menu-active .line:first-child { transform: translateY(5px) rotate(45deg); }
+        .menu-active .line:last-child { transform: translateY(-6px) rotate(-45deg); }
+
+        .full-menu { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #fff; z-index: 9998; display: none; padding-top: 80px; }
+        .menu-links { display: flex; flex-direction: column; padding: 0 40px; }
+        .menu-links a { color: #1d1d1f; text-decoration: none; font-size: 28px; font-weight: 600; padding: 15px 0; border-bottom: 0.5px solid #d2d2d7; }
+
+        /* 内容区 */
+        .about-section { max-width: 800px; margin: 120px auto; padding: 0 20px; text-align: center; }
+        .about-section h1 { font-size: 48px; font-weight: 600; margin-bottom: 20px; }
+        .about-section p { font-size: 21px; line-height: 1.5; color: #86868b; }
+        
+        .footer-legal { padding: 40px 20px; border-top: 0.5px solid #d2d2d7; font-size: 12px; color: #86868b; max-width: 980px; margin: 0 auto; background: #f5f5f7; text-align: left; }
+        .footer-legal a { color: #0071e3; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <nav class="apple-nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-title">MWS</a>
+            <div class="menu-icon" id="menuToggle">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="full-menu" id="fullMenu">
+        <div class="menu-links">
+            <a href="index.html">首页</a>
+            <a href="about.html">了解我们</a>
+            <a href="quiz.html">入学测验</a>
+        </div>
+    </div>
+
+    <section class="about-section">
+        <h1>这里是创作的起点。</h1>
+        <p>迎新社不仅是一个 Mod 组织，更是一个让想法生根发芽的温床。通过 Team Rainfall 的底层支持，我们致力于打破技术的壁垒，让每一位热爱 Mod 的人都能成为创造者。</p>
+    </section>
+
+    <footer class="footer-legal">
+        <p>Copyright © 2026 Mod Welcome Society </a>. 保留所有权利。</p>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('menuToggle');
+        const menu = document.getElementById('fullMenu');
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('menu-active');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            document.body.style.overflow = menu.style.display === 'block' ? 'hidden' : 'auto';
+        });
+    </script>
+</body>
+</html>
